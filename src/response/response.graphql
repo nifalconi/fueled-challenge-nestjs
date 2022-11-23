@@ -1,0 +1,24 @@
+type Response {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateResponseInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateResponseInput {
+  id: Int!
+}
+
+type Query {
+  responses: [Response]!
+  response(id: Int!): Response
+}
+
+type Mutation {
+  createResponse(createResponseInput: CreateResponseInput!): Response!
+  updateResponse(updateResponseInput: UpdateResponseInput!): Response!
+  removeResponse(id: Int!): Response
+}
