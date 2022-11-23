@@ -1,0 +1,56 @@
+type Questionnaire {
+  id: ID!
+  title: String!
+  version: Int
+  questions: [Question]!
+  responses: [Response]
+  userId: String
+}
+
+type Question {
+  id: ID!
+  order: Int!
+  title: String!
+  questionType: QuestionType!
+}
+
+input CreateQuestionnaireInput {
+  userId: String!
+  title: String!
+  questions: [QuestionInput]
+}
+
+input QuestionInput {
+  title: String!
+  questionType: QuestionType!
+  order: Int!
+}
+
+input UpdateQuestionnaireInput {
+  id: String!
+  title: String
+  questions: [QuestionInput]
+}
+
+type Query {
+  questionnaires(userId: String!): [Questionnaire]
+  questionnaire(id: String!): Questionnaire
+}
+
+type Mutation {
+  createQuestionnaire(createQuestionnaireInput: CreateQuestionnaireInput!): Questionnaire!
+  updateQuestionnaire(updateQuestionnaireInput: UpdateQuestionnaireInput!): Questionnaire!
+  removeQuestionnaire(id: String!): Questionnaire
+}
+
+
+
+enum QuestionType {
+  SHORT_ANSWER
+  PARAGRAPH
+  CHECKBOX
+  MULTIPLE_CHOICE
+  DROPDOWN
+}
+
+scalar JSONObject
