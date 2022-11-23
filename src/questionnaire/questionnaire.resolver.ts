@@ -35,6 +35,13 @@ export class QuestionnaireResolver {
     return this.questionnaireService.findOne(id);
   }
 
+  @Query('getJsonQuestionnaire')
+  async findJsonOne(@Args('id') id: string) {
+    const questionnaire = await this.questionnaireService.findOne(id);
+
+    return JSON.stringify(questionnaire);
+  }
+
   @Mutation('updateQuestionnaire')
   update(
     @Args('updateQuestionnaireInput')

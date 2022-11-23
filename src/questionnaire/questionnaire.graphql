@@ -33,6 +33,8 @@ input UpdateQuestionnaireInput {
 }
 
 type Query {
+  getJsonQuestionnaire(id: String!): String
+  getQuestionnaireFromLink(link: String!): JSONObject
   questionnaires(userId: String!): [Questionnaire]
   questionnaire(id: String!): Questionnaire
 }
@@ -42,8 +44,6 @@ type Mutation {
   updateQuestionnaire(updateQuestionnaireInput: UpdateQuestionnaireInput!): Questionnaire!
   removeQuestionnaire(id: String!): Questionnaire
 }
-
-
 
 enum QuestionType {
   SHORT_ANSWER
