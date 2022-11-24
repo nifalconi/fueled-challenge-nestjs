@@ -8,7 +8,9 @@ export class ResponseResolver {
   constructor(private readonly responseService: ResponseService) {}
 
   @Mutation('createResponse')
-  create(@Args('createResponseInput') createResponseInput: CreateResponseInput) {
+  create(
+    @Args('createResponseInput') createResponseInput: CreateResponseInput,
+  ) {
     return this.responseService.create(createResponseInput);
   }
 
@@ -23,8 +25,13 @@ export class ResponseResolver {
   }
 
   @Mutation('updateResponse')
-  update(@Args('updateResponseInput') updateResponseInput: UpdateResponseInput) {
-    return this.responseService.update(updateResponseInput.id, updateResponseInput);
+  update(
+    @Args('updateResponseInput') updateResponseInput: UpdateResponseInput,
+  ) {
+    return this.responseService.update(
+      updateResponseInput.id,
+      updateResponseInput,
+    );
   }
 
   @Mutation('removeResponse')

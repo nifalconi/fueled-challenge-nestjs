@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateResponseInput } from './dto/create-response.input';
 import { UpdateResponseInput } from './dto/update-response.input';
 
 @Injectable()
 export class ResponseService {
-  create(createResponseInput: CreateResponseInput) {
+  create(_createResponseInput: CreateResponseInput) {
     return 'This action adds a new response';
   }
 
@@ -16,7 +17,7 @@ export class ResponseService {
     return `This action returns a #${id} response`;
   }
 
-  update(id: number, updateResponseInput: UpdateResponseInput) {
+  update(id: number, _updateResponseInput: UpdateResponseInput) {
     return `This action updates a #${id} response`;
   }
 
