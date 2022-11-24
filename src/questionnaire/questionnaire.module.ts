@@ -3,6 +3,6 @@ import { QuestionnaireService } from './questionnaire.service';
 import { QuestionnaireResolver } from './questionnaire.resolver';
 
 @Module({
-  providers: [QuestionnaireResolver, QuestionnaireService]
+  providers: [QuestionnaireResolver, QuestionnaireService],
 })
 export class QuestionnaireModule {}

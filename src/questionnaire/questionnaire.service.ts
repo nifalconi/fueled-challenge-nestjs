@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import {
   CreateQuestionnaireInput,
   UpdateQuestionnaireInput,
-} from 'src/types/graphql';
+} from '../types/graphql';
 
 @Injectable()
 export class QuestionnaireService {
@@ -27,14 +27,24 @@ export class QuestionnaireService {
     return savedQuestionnaire;
   }
 
-  findAll(id: string) {
-    return this.prisma.questionnaire.findMany({ where: { userId: id } });
+  findAll(userId: string) {
+    return this.prisma.questionnaire.findMany({ where: { userId } });
   }
 
   findOne(id: string) {
     return this.prisma.questionnaire.findUnique({
       where: { id },
       include: { questions: true },
+    });
+  }
+
+  findByLink(link: string) {
+    return this.prisma.questionnaire.findUnique({
+      where: { link },
+      select: {
+        title: true,
+        questions: true,
+      },
     });
   }
 

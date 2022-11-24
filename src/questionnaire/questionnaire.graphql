@@ -33,10 +33,9 @@ input UpdateQuestionnaireInput {
 }
 
 type Query {
-  getJsonQuestionnaire(id: String!): String
   getQuestionnaireFromLink(link: String!): JSONObject
   questionnaires(userId: String!): [Questionnaire]
-  questionnaire(id: String!): Questionnaire
+  questionnaire(id: String!,  returnType: String ): Questionnaire
 }
 
 type Mutation {

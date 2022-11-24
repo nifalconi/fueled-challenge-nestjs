@@ -10,7 +10,7 @@ import {
   CreateQuestionnaireInput,
   Questionnaire,
   UpdateQuestionnaireInput,
-} from 'src/types/graphql';
+} from '../types/graphql';
 import { QuestionnaireService } from './questionnaire.service';
 
 @Resolver('Questionnaire')
@@ -25,21 +25,19 @@ export class QuestionnaireResolver {
     return this.questionnaireService.create(createQuestionnaireInput);
   }
 
-  @Query('questionnaire')
-  findAll(@Args('id') id: string) {
-    return this.questionnaireService.findAll(id);
+  @Query('questionnaires')
+  findAll(@Args('userId') userId: string) {
+    return this.questionnaireService.findAll(userId);
   }
 
   @Query('questionnaire')
-  findOne(@Args('id') id: string) {
-    return this.questionnaireService.findOne(id);
-  }
+  findOne(@Args('id returnType') id: string, returnType?: string) {
+    const questionnaire = this.questionnaireService.findOne(id);
 
-  @Query('getJsonQuestionnaire')
-  async findJsonOne(@Args('id') id: string) {
-    const questionnaire = await this.questionnaireService.findOne(id);
-
-    return JSON.stringify(questionnaire);
+    if (returnType === 'json') {
+      return JSON.stringify(questionnaire);
+    }
+    return questionnaire;
   }
 
   @Mutation('updateQuestionnaire')
